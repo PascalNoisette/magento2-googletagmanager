@@ -31,6 +31,13 @@ class GtmCode extends Template {
      * @var \Magento\Cookie\Helper\Cookie
      */
     protected $_cookieHelper = null;
+    
+    /**
+     * List of dependancies
+     * 
+     * @array
+     */
+    protected $_dependancies = array();
 
     /**
      * @param Context $context
@@ -53,6 +60,24 @@ class GtmCode extends Template {
      */
     public function getAccountId() {
         return $this->_gtmHelper->getAccountId();
+    }
+    
+    /**
+     * Defer gtm loading
+     */
+    public function addDependancy($name)
+    {
+        $this->_dependancies[] = $name;
+    }
+    
+    /**
+     * List of requirejs ressource needed to gtm
+     * 
+     * @return array
+     */
+    public function getDependancies()
+    {
+        return $this->_dependancies;
     }
 
     /**
